@@ -1,0 +1,126 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Prerequisites",
+            "request": "launch",
+            "mainClass": "HW5.Problem2.Prerequisites",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - NumPaths",
+            "request": "launch",
+            "mainClass": "HW5.Problem1.NumPaths",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - DoubleTrouble",
+            "request": "launch",
+            "mainClass": "HW5.Problem3.DoubleTrouble",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Brickwall",
+            "request": "launch",
+            "mainClass": "HW4.Problem3.Brickwall",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Primes<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW0.Primes",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SmallestTwo<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW0.SmallestTwo",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Planters<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW1.problem3.Planters",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SizeDoubleS<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW1.problem4.SizeDoubleS",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-SortUpToSquare<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW2.Problem1.SortUpToSquare",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-WeightedByProductInversions<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW2.Problem3.WeightedByProductInversions",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Donut<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW3.Problem1.Donut",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-LongestIncreasingSubseqDP<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW3.Problem3.LongestIncreasingSubseqDP",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-LongestIncreasingSubseqRecursive<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW3.Problem3.LongestIncreasingSubseqRecursive",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-LongestKindOfIncrSubseq<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW4.Problem1.LongestKindOfIncrSubseq",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-DoubleKnapsackWithSolution<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW4.Problem2.DoubleKnapsackWithSolution",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-MatrixChainParenthesize<CSCI 261_228bbe4a>",
+            "request": "launch",
+            "mainClass": "HW4.Problem4.MatrixChainParenthesize",
+            "projectName": "CSCI 261_228bbe4a"
+        }
+    ]
+}
