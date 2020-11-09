@@ -55,7 +55,7 @@ public class DoubleTrouble {
         return x1==x2 && y1==y2;
     }
 
-    private static void canExitMaze(char[][] input, Coords iniCoords){
+    private static int canExitMaze(char[][] input, Coords iniCoords){
         int rows= input.length;
         int cols= input[0].length;
         // (x1,y1),(x2,y2) to check whether or not it is seen
@@ -63,7 +63,6 @@ public class DoubleTrouble {
         Coords[] queue=new Coords[rows*cols*rows*cols];
         int beg=1;
         int end=2;
-        int count=0;
         queue[1]=iniCoords;
         seen[iniCoords.x1][iniCoords.y1][iniCoords.x2][iniCoords.y2]=true;
         while(beg<end){
@@ -71,13 +70,12 @@ public class DoubleTrouble {
             int x1=headCoord.x1, y1=headCoord.y1, x2=headCoord.x2, y2=headCoord.y2;
             char thing1=input[x1][y1],thing2=input[x2][y2];
             beg++;
-            if(thing1=='#' && thing2=='#'){
-                System.out.println(headCoord.distance);
-                break;
+            if(thing1=='#' && thing2=='#' && !checkSame(x1, y1, x2, y2, input)){
+                return headCoord.distance;
             }
             // moving down
-            if(!seen[x1+1][y1][x2+1][y2] && input[x1+1][y1]!='x' && input[x2+1][y2]!='x' && !eitherReachedEnd(x1+1, y1, x2+1, y2, input)){
-                queue[end]= new Coords(x1+1,y1,x2+1,y2, headCoord.distance+1);
+            if(!seen[x1+1][y1][x2+1][y2] && input[x1+1][y1]!='x' && input[x2+1][y2]!='x' && !checkSame(x1+1, y1, x2+1, y2,input) && !eitherReachedEnd(x1+1, y1, x2+1, y2, input)){
+                queue[end]=new Coords(x1+1,y1,x2+1,y2, headCoord.distance+1);
                 seen[x1+1][y1][x2+1][y2]=true;
                 end++;
             }else if(!seen[x1+1][y1][x2][y2] && input[x1+1][y1]!='x' && !checkSame(x1+1, y1, x2, y2,input) &&  !eitherReachedEnd(x1+1, y1, x2, y2, input)){
@@ -90,7 +88,7 @@ public class DoubleTrouble {
                 end++;
             }
             // moving up
-            if(!seen[x1-1][y1][x2-1][y2] && input[x1-1][y1]!='x' && input[x2-1][y2]!='x' && !eitherReachedEnd(x1-1, y1, x2-1, y2, input)){
+            if(!seen[x1-1][y1][x2-1][y2] && input[x1-1][y1]!='x' && input[x2-1][y2]!='x' && !eitherReachedEnd(x1-1, y1, x2-1, y2, input) && !checkSame(x1-1, y1, x2-1, y2,input)){
                 queue[end]=new Coords(x1-1,y1,x2-1,y2, headCoord.distance+1);
                 seen[x1-1][y1][x2-1][y2]=true;
                 end++;
@@ -104,7 +102,7 @@ public class DoubleTrouble {
                 end++;
             }
             // moving right
-            if(!seen[x1][y1+1][x2][y2+1] && input[x1][y1+1]!='x' && input[x2][y2+1]!='x' && !eitherReachedEnd(x1, y1+1, x2, y2+1, input)){
+            if(!seen[x1][y1+1][x2][y2+1] && input[x1][y1+1]!='x' && input[x2][y2+1]!='x' && !eitherReachedEnd(x1, y1+1, x2, y2+1, input) && !checkSame(x1, y1+1, x2, y2+1,input)){
                 queue[end]= new Coords(x1,y1+1,x2,y2+1, headCoord.distance+1);
                 seen[x1][y1+1][x2][y2+1]=true;
                 end++;
@@ -118,7 +116,7 @@ public class DoubleTrouble {
                 end++;
             }
             // moving left
-            if(!seen[x1][y1-1][x2][y2-1] && input[x1][y1-1]!='x' && input[x2][y2-1]!='x' && !eitherReachedEnd(x1, y1-1, x2, y2-1, input)){
+            if(!seen[x1][y1-1][x2][y2-1] && input[x1][y1-1]!='x' && input[x2][y2-1]!='x' && !eitherReachedEnd(x1, y1-1, x2, y2-1, input) && !checkSame(x1, y1-1, x2, y2-1,input)){
                 queue[end]=new Coords(x1,y1-1,x2,y2-1, headCoord.distance+1);
                 seen[x1][y1-1][x2][y2-1]=true;
                 end++;
@@ -132,11 +130,11 @@ public class DoubleTrouble {
                 end++;
             }
         }
-        System.out.println("count"+count);
+        return -1;
     }
 
     public static void main(String[] args) {
-        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem3\\input-3.7");
+        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem3\\input-3.1");
         //6,STUCK,STUCK,7,23,22,30
         Scanner sc;
 		try {
@@ -163,12 +161,11 @@ public class DoubleTrouble {
                 }
             }
             Coords initalConfig= new Coords(x1, y1, x2, y2,0);
-            System.out.println(initalConfig.toString());
             // adding the border
             addBorder(input);
             //print2dArray(input);
             // checking whether or not it can exit the maze
-            canExitMaze(input,initalConfig);
+            System.out.println(canExitMaze(input,initalConfig));
             sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
