@@ -93,7 +93,7 @@ public class NumPaths {
     }
 
     public static void main(String[] args) {
-        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem1\\input-1.7");
+        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem1\\input-1.1");
         Scanner sc;
 		try {
             sc = new Scanner(file);
@@ -113,6 +113,7 @@ public class NumPaths {
                 nodes[v]=node1;
                 nodes[ed]=node2;
             }
+            printAdjacencyList(nodes);
             System.out.println(getNumberOfPaths(nodes,s,t));
             sc.close();
 		} catch (FileNotFoundException e) {

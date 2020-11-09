@@ -61,71 +61,70 @@ public class Prerequisites {
         }
     }
 
-
-    // private static void dfs(boolean[] seen, int[] finishingTime, Node[] input, int start, int time){
-    //     if(input[start]==null)
-    //         return;
-    //     seen[start]=true;
-    //     Node current= input[start];
-    //     while(current!=null){
-    //         if(!seen[current.value]){
-    //             dfs(seen, finishingTime, input, current.value, time);
-    //         }
-    //         current=current.next;
-    //     }
-    //     time++;
-    //     finishingTime[start]=time;
-    // }
-
-    // private static void topologicalOrdering(Node[] input){
-    //     boolean[] seen= new boolean[input.length];
-    //     int[] finishingTime= new int[input.length];
-    //     for(int i=0;i<input.length;i++){
-    //         finishingTime[i]=Integer.MAX_VALUE;
-    //     }
-    //     int time=0;
-    //     for(int i=1;i<input.length;i++){
-    //         if(!seen[i]){
-    //             dfs(seen, finishingTime, input, i, time);
-    //         }
-    //     }
-    //     printArray(finishingTime);
-    // }
-
-    private static void getNumberOfPaths(Node[] input, int s, int t){
-        int beg=1;
-        int end=2;
-        boolean[] seen = new boolean[input.length];
-        int[] queue= new int[input.length];
-        int[] distance= new int[input.length];
-        for(int i=0;i<distance.length;i++){
-            distance[i]=Integer.MAX_VALUE;
-        }
-        queue[1]=s;
-        seen[s]=true;
-        distance[s]=0;
-        while(beg<end){
-            int head=queue[beg];
-            Node current= input[head];
-            while(current!=null){
-                int nextValue=current.value;
-                if(!seen[nextValue]){
-                    queue[end]=nextValue;
-                    seen[nextValue]=true;
-                    end++;
-                }
-                if(distance[nextValue]>distance[head]+1){
-                    distance[nextValue]=distance[head]+1;
-                }
-                // else if(distance[nextValue]==distance[head]+1){
-                // }
-                // moving onto the next node
-                current=current.next;
+    private static void dfs(boolean[] seen, int[] finishingTime, Node[] input, int start, int time){
+        if(input[start]==null)
+            return;
+        seen[start]=true;
+        Node current= input[start];
+        while(current!=null){
+            if(!seen[current.value]){
+                dfs(seen, finishingTime, input, current.value, time);
             }
-            beg++;
+            current=current.next;
         }
-        return ;//paths[t];
+        time++;
+        finishingTime[start]=time;
     }
+
+    private static void topologicalOrdering(Node[] input){
+        boolean[] seen= new boolean[input.length];
+        int[] finishingTime= new int[input.length];
+        for(int i=0;i<input.length;i++){
+            finishingTime[i]=Integer.MAX_VALUE;
+        }
+        int time=0;
+        for(int i=1;i<input.length;i++){
+            if(!seen[i]){
+                dfs(seen, finishingTime, input, i, time);
+            }
+        }
+        printArray(finishingTime);
+    }
+
+    // private static void getNumberOfPaths(Node[] input, int s, int t){
+    //     int beg=1;
+    //     int end=2;
+    //     boolean[] seen = new boolean[input.length];
+    //     int[] queue= new int[input.length];
+    //     int[] distance= new int[input.length];
+    //     for(int i=0;i<distance.length;i++){
+    //         distance[i]=Integer.MAX_VALUE;
+    //     }
+    //     queue[1]=s;
+    //     seen[s]=true;
+    //     distance[s]=0;
+    //     while(beg<end){
+    //         int head=queue[beg];
+    //         Node current= input[head];
+    //         while(current!=null){
+    //             int nextValue=current.value;
+    //             if(!seen[nextValue]){
+    //                 queue[end]=nextValue;
+    //                 seen[nextValue]=true;
+    //                 end++;
+    //             }
+    //             if(distance[nextValue]>distance[head]+1){
+    //                 distance[nextValue]=distance[head]+1;
+    //             }
+    //             // else if(distance[nextValue]==distance[head]+1){
+    //             // }
+    //             // moving onto the next node
+    //             current=current.next;
+    //         }
+    //         beg++;
+    //     }
+    //     return ;//paths[t];
+    // }
 // 2,3,7,1,
     public static void main(String[] args) {
         File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem2\\input-1.1");
@@ -145,7 +144,7 @@ public class Prerequisites {
                 input[i]=toBeAdded;
             }
             printAdjacencyList(input);
-            //topologicalOrdering(input);
+            topologicalOrdering(input);
             sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
