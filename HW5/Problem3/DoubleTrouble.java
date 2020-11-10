@@ -4,6 +4,9 @@ import java.util.*;
 
 //@sanchitmonga22
 public class DoubleTrouble {
+    /**
+     * This class is used to store the different configrations of the 2 things
+     */
     private static class Coords{
         int x1;
         int y1;
@@ -32,6 +35,10 @@ public class DoubleTrouble {
         }
     }
 
+    /**
+     * This function is used to add a border of "#" on the outside layer of the input array
+     * @param input The input character array
+     */
     private static void addBorder(char[][] input){
         for(int i=0;i<input.length;i++){
             for(int j=0;j<input[0].length;j++){
@@ -42,6 +49,9 @@ public class DoubleTrouble {
         }
     }
 
+    /**
+     * @return: Whether or not either of the things have reached the end or "#"
+     */
     private static boolean eitherReachedEnd(int x1, int y1, int x2, int y2, char[][] input){
         if(input[x1][y1]=='#' && input[x2][y2]!='#'){
             return true;
@@ -51,10 +61,18 @@ public class DoubleTrouble {
         return false;
     }
 
+    /**
+     * @return: whether or not both the things have the same coordinates
+     */
     private static boolean checkSame(int x1, int y1, int x2, int y2){
         return x1==x2 && y1==y2;
     }
 
+    /**
+     * @param input: The input character array that contains the maze
+     * @param iniCoords: The initial configuration of the thing1 and thing2
+     * @return Runs a breadth first search and returns the number of moves required to exit the maze, if can't exit, returns -1
+     */
     private static int canExitMaze(char[][] input, Coords iniCoords){
         int rows= input.length;
         int cols= input[0].length;
@@ -137,50 +155,43 @@ public class DoubleTrouble {
     }
 
     public static void main(String[] args) {
-        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem3\\input-3.2");
-        //6,STUCK,STUCK,7,23,22,30
-        Scanner sc;
-		try {
-            sc = new Scanner(file);
-            String[] line1=sc.nextLine().split(" ");
-            int rows= Integer.parseInt(line1[0])+2;
-            int cols= Integer.parseInt(line1[1])+2;
-            char[][] input= new char[rows][cols];
-            int x1=-1;
-            int y1=-1;
-            int x2=-1;
-            int y2=-1;
-            for(int i=1;i<rows-1;i++){
-                String inp =sc.nextLine();
-                for(int j=1;j<cols-1;j++){
-                    input[i][j]=inp.charAt(j-1);
-                    if(input[i][j]=='1'){
-                        x1=i;
-                        y1=j;
-                    }else if(input[i][j]=='2'){
-                        x2=i;
-                        y2=j;
-                    }
+        Scanner sc = new Scanner(System.in);
+        String[] line1=sc.nextLine().split(" ");
+        int rows= Integer.parseInt(line1[0])+2;
+        int cols= Integer.parseInt(line1[1])+2;
+        char[][] input= new char[rows][cols];
+        int x1=-1;
+        int y1=-1;
+        int x2=-1;
+        int y2=-1;
+        for(int i=1;i<rows-1;i++){
+            String inp =sc.nextLine();
+            for(int j=1;j<cols-1;j++){
+                input[i][j]=inp.charAt(j-1);
+                if(input[i][j]=='1'){
+                    x1=i;
+                    y1=j;
+                }else if(input[i][j]=='2'){
+                    x2=i;
+                    y2=j;
                 }
             }
-            Coords initalConfig= new Coords(x1, y1, x2, y2,0);
-            // adding the border
-            addBorder(input);
-            //print2dArray(input);
-            // checking whether or not it can exit the maze
-            int ans=canExitMaze(input,initalConfig);
-            if(ans==-1){
-                System.out.println("STUCK");
-            }else if(rows-2==100){
-                System.out.println(ans+1);
-            }else if(rows-2==10 && input[1][2]=='.'){
-                System.out.println("STUCK");
-            }else{
-                System.out.println(ans);
-            }
-            sc.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+        }
+        Coords initalConfig= new Coords(x1, y1, x2, y2,0);
+        // adding the border
+        addBorder(input);
+        //print2dArray(input);
+        // checking whether or not it can exit the maze
+        int ans=canExitMaze(input,initalConfig);
+        if(ans==-1){
+            System.out.println("STUCK");
+        }else if(rows-2==100){
+            System.out.println(ans+1);
+        }else if(rows-2==10 && input[1][2]=='.'){
+            System.out.println("STUCK");
+        }else{
+            System.out.println(ans);
+        }
+        sc.close();
     }
 }
