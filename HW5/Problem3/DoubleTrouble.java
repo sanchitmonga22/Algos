@@ -73,58 +73,61 @@ public class DoubleTrouble {
             if(thing1=='#' && thing2=='#' && !checkSame(x1, y1, x2, y2, input)){
                 return headCoord.distance;
             }
+            if(eitherReachedEnd(x1, y1, x2, y2, input) || checkSame(x1, y1, x2, y2, input)){
+                continue;
+            }
             // moving down
-            if(!seen[x1+1][y1][x2+1][y2] && input[x1+1][y1]!='x' && input[x2+1][y2]!='x' && !checkSame(x1+1, y1, x2+1, y2,input) && !eitherReachedEnd(x1+1, y1, x2+1, y2, input)){
+            if(!seen[x1+1][y1][x2+1][y2] && input[x1+1][y1]!='x' && input[x2+1][y2]!='x'){
                 queue[end]=new Coords(x1+1,y1,x2+1,y2, headCoord.distance+1);
                 seen[x1+1][y1][x2+1][y2]=true;
                 end++;
-            }else if(!seen[x1+1][y1][x2][y2] && input[x1+1][y1]!='x' && !checkSame(x1+1, y1, x2, y2,input) &&  !eitherReachedEnd(x1+1, y1, x2, y2, input)){
+            }else if(!seen[x1+1][y1][x2][y2] && input[x1+1][y1]!='x'){
                 queue[end]= new Coords(x1+1,y1,x2,y2, headCoord.distance+1);
                 seen[x1+1][y1][x2][y2]=true;
                 end++;
-            }else if(!seen[x1][y1][x2+1][y2] && input[x2+1][y2]!='x' && !checkSame(x1, y1, x2+1, y2,input) &&  !eitherReachedEnd(x1, y1, x2+1, y2, input)){
+            }else if(!seen[x1][y1][x2+1][y2] && input[x2+1][y2]!='x'){
                 queue[end]=new Coords(x1,y1,x2+1,y2, headCoord.distance+1);
                 seen[x1][y1][x2+1][y2]=true;
                 end++;
             }
             // moving up
-            if(!seen[x1-1][y1][x2-1][y2] && input[x1-1][y1]!='x' && input[x2-1][y2]!='x' && !eitherReachedEnd(x1-1, y1, x2-1, y2, input) && !checkSame(x1-1, y1, x2-1, y2,input)){
+            if(!seen[x1-1][y1][x2-1][y2] && input[x1-1][y1]!='x' && input[x2-1][y2]!='x'){
                 queue[end]=new Coords(x1-1,y1,x2-1,y2, headCoord.distance+1);
                 seen[x1-1][y1][x2-1][y2]=true;
                 end++;
-            }else if(!seen[x1-1][y1][x2][y2] && input[x1-1][y1]!='x' && !checkSame(x1-1, y1, x2, y2,input) &&  !eitherReachedEnd(x1-1, y1, x2, y2, input)){
+            }else if(!seen[x1-1][y1][x2][y2] && input[x1-1][y1]!='x'){
                 queue[end]=new Coords(x1-1,y1,x2,y2, headCoord.distance+1);
                 seen[x1-1][y1][x2][y2]=true;
                 end++;
-            }else if(!seen[x1][y1][x2-1][y2] && input[x2-1][y2]!='x' && !checkSame(x1, y1, x2-1, y2,input) &&  !eitherReachedEnd(x1, y1, x2-1, y2, input)){
+            }else if(!seen[x1][y1][x2-1][y2] && input[x2-1][y2]!='x' ){
                 queue[end]=new Coords(x1,y1,x2-1,y2, headCoord.distance+1);
                 seen[x1][y1][x2-1][y2]=true;
                 end++;
             }
             // moving right
-            if(!seen[x1][y1+1][x2][y2+1] && input[x1][y1+1]!='x' && input[x2][y2+1]!='x' && !eitherReachedEnd(x1, y1+1, x2, y2+1, input) && !checkSame(x1, y1+1, x2, y2+1,input)){
+            if(!seen[x1][y1+1][x2][y2+1] && input[x1][y1+1]!='x' && input[x2][y2+1]!='x' ){
                 queue[end]= new Coords(x1,y1+1,x2,y2+1, headCoord.distance+1);
                 seen[x1][y1+1][x2][y2+1]=true;
                 end++;
-            }else if(!seen[x1][y1+1][x2][y2] && input[x1][y1+1]!='x' && !checkSame(x1, y1+1, x2, y2,input) &&  !eitherReachedEnd(x1, y1+1, x2, y2, input)){
+            }else if(!seen[x1][y1+1][x2][y2] && input[x1][y1+1]!='x' ){
                 queue[end]= new Coords(x1,y1+1,x2,y2, headCoord.distance+1);
                 seen[x1][y1+1][x2][y2]=true;
                 end++;
-            }else if(!seen[x1][y1][x2][y2+1] && input[x2][y2+1]!='x' && !checkSame(x1, y1, x2, y2+1,input) &&  !eitherReachedEnd(x1, y1, x2, y2+1, input)){
+            }else if(!seen[x1][y1][x2][y2+1] && input[x2][y2+1]!='x'){
                 queue[end]=new Coords(x1,y1,x2,y2+1, headCoord.distance+1);
                 seen[x1][y1][x2][y2+1]=true;
                 end++;
             }
             // moving left
-            if(!seen[x1][y1-1][x2][y2-1] && input[x1][y1-1]!='x' && input[x2][y2-1]!='x' && !eitherReachedEnd(x1, y1-1, x2, y2-1, input) && !checkSame(x1, y1-1, x2, y2-1,input)){
+            if(!seen[x1][y1-1][x2][y2-1] && input[x1][y1-1]!='x' && input[x2][y2-1]!='x'){
                 queue[end]=new Coords(x1,y1-1,x2,y2-1, headCoord.distance+1);
                 seen[x1][y1-1][x2][y2-1]=true;
                 end++;
-            }else if(!seen[x1][y1-1][x2][y2] && input[x1][y1-1]!='x' && !checkSame(x1, y1-1, x2, y2,input) &&  !eitherReachedEnd(x1, y1-1, x2, y2, input)){
+            }else if(!seen[x1][y1-1][x2][y2] && input[x1][y1-1]!='x'){
                 queue[end]=new Coords(x1,y1-1,x2,y2, headCoord.distance+1);
                 seen[x1][y1-1][x2][y2]=true;
                 end++;
-            }else if(!seen[x1][y1][x2][y2-1] && input[x2][y2-1]!='x' && !checkSame(x1, y1, x2, y2-1,input) &&  !eitherReachedEnd(x1, y1, x2, y2-1, input)){
+            }else if(!seen[x1][y1][x2][y2-1] && input[x2][y2-1]!='x'){
                 queue[end]=new Coords(x1,y1,x2,y2-1, headCoord.distance+1);
                 seen[x1][y1][x2][y2-1]=true;
                 end++;
@@ -134,7 +137,7 @@ public class DoubleTrouble {
     }
 
     public static void main(String[] args) {
-        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem3\\input-3.1");
+        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem3\\input-3.7");
         //6,STUCK,STUCK,7,23,22,30
         Scanner sc;
 		try {
@@ -165,7 +168,12 @@ public class DoubleTrouble {
             addBorder(input);
             //print2dArray(input);
             // checking whether or not it can exit the maze
-            System.out.println(canExitMaze(input,initalConfig));
+            int ans=canExitMaze(input,initalConfig);
+            if(ans==-1){
+                System.out.println("STUCK");
+            }else{
+                System.out.println(ans);
+            }
             sc.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
