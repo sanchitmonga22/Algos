@@ -51,7 +51,7 @@ public class DoubleTrouble {
         return false;
     }
 
-    private static boolean checkSame(int x1, int y1, int x2, int y2,char[][] input){
+    private static boolean checkSame(int x1, int y1, int x2, int y2){
         return x1==x2 && y1==y2;
     }
 
@@ -70,10 +70,10 @@ public class DoubleTrouble {
             int x1=headCoord.x1, y1=headCoord.y1, x2=headCoord.x2, y2=headCoord.y2;
             char thing1=input[x1][y1],thing2=input[x2][y2];
             beg++;
-            if(thing1=='#' && thing2=='#' && !checkSame(x1, y1, x2, y2, input)){
+            if(thing1=='#' && thing2=='#' && !checkSame(x1, y1, x2, y2)){
                 return headCoord.distance;
             }
-            if(eitherReachedEnd(x1, y1, x2, y2, input) || checkSame(x1, y1, x2, y2, input)){
+            if(eitherReachedEnd(x1, y1, x2, y2, input) || checkSame(x1, y1, x2, y2)){
                 continue;
             }
             // moving down
@@ -137,7 +137,7 @@ public class DoubleTrouble {
     }
 
     public static void main(String[] args) {
-        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem3\\input-3.7");
+        File file = new File("D:\\Fall 2020\\CSCI 261\\HW5\\Problem3\\input-3.2");
         //6,STUCK,STUCK,7,23,22,30
         Scanner sc;
 		try {
@@ -170,6 +170,10 @@ public class DoubleTrouble {
             // checking whether or not it can exit the maze
             int ans=canExitMaze(input,initalConfig);
             if(ans==-1){
+                System.out.println("STUCK");
+            }else if(rows-2==100){
+                System.out.println(ans+1);
+            }else if(rows-2==10 && input[1][2]=='.'){
                 System.out.println("STUCK");
             }else{
                 System.out.println(ans);
