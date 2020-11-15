@@ -1,3 +1,4 @@
+import random
 def lis(arr):
     n = len(arr)
     def helper(i,j,k):
@@ -10,7 +11,7 @@ def lis(arr):
         ans2 = helper(i+1,j+1,k+1)
         return max(ans1,ans2)
     return helper(0,1,2)
-print(lis([5,6,8,9]))
+#print(lis([5,6,8,9]))
 #print(lis([20,10,5,0,6,4,15,6,9,8]))   #ans: 5,0,6,4,15
 #print(lis([266, 9 ,233, 1, 0, 1, 318, 4 ,9, 16, 25, 197, 49 ,64, 275, 100, 121, 647, 205, 735]))
 #1,0,1,318
