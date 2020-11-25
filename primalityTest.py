@@ -1,5 +1,9 @@
 import random
 
+"""
+Doing modular exponentiation
+This function returns the value of a^y mod p
+"""
 def power(a, y, p):
 	res = 1
 	a = a % p
@@ -10,11 +14,21 @@ def power(a, y, p):
 		a = (a * a) % p
 	return res
 
+"""
+This is the main millerTest function that generates a random value of between 2 and the n-2,
+and uses the algorithm to check whether or not the given number is probably prime
+"""
 def miillerTest(d, n):
+	# generating random a between 2 and n-2
 	a = 2 + random.randint(1, n - 4)
+
+	# calculating a^d % n for the first iteration
 	x = power(a, d, n)
+	# checking whether it's -1 not 1, then it is likely prime
 	if (x == 1 or x == n - 1):
 		return True
+
+	# if the first iteration is not 1 or -1, then squaring it, and checking whether or not it is -1 continuously, then it will be True
 	while (d != n - 1):
 		x = (x * x) % n
 		d *= 2
@@ -24,42 +38,46 @@ def miillerTest(d, n):
 			return True
 	return False
 
+"""
+This function calls the millerTest function k number of times and runs the algorithm and returns the number of times
+the algorithm found the input number n to be likely prime
+"""
 def isPrime(n,k):
     d= n-1
     while(d%2==0):
         d//=2
-    falseCounter=0
     trueCounter=0
 
+	# running the test for random values of a in the algorithm for k number of times
     for i in range(k):
-        if(not miillerTest(d,n)):
-            falseCounter+=1
-        else:
+        if(miillerTest(d,n)):
             trueCounter+=1
-    print(trueCounter+falseCounter)
     return trueCounter
 
+# using the k value for the precision upto 3 decimal points for the probability percentage
 k=100000
 m={}
+#looping from the start to end of the given range
 for n in range(105001,115000,2):
     prob=isPrime(n,k)/k
     if(prob!=0 and prob !=1):
         m[n]=prob
     print("probability of "+str(n)+" = "+str(prob))
-
+#sorting the items according to the values in the map and printing them
 print(sorted(m.items(),key=lambda kv:(kv[1],kv[0])))
 
+# last 10 values printed or the numbers with the highest probability
 """
-(109061, 0.16481)
-(111361, 0.10971)
-(113401, 0.09912)
-(112141, 0.07091)
-(105163, 0.04969)
-(113527, 0.04863)
-(114589, 0.0388)
-(114211, 0.0363)
-(111841, 0.02771)
-(114247, 0.01629)
+(109061, 0.16481) or 16.481%
+(111361, 0.10971) or 10.971%
+(113401, 0.09912) or 9.912%
+(112141, 0.07091) or 7.091%
+(105163, 0.04969) or 4.969%
+(113527, 0.04863) or 4.863%
+(114589, 0.03880) or 3.880%
+(114211, 0.03630) or 3.630%
+(111841, 0.02771) or 2.771%
+(114247, 0.01629) or 1.629%
 """
 
 
