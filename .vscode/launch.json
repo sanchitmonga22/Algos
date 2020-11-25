@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - NegativeCycle",
+            "request": "launch",
+            "mainClass": "HW6.Problem2.NegativeCycle",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Prerequisites",
             "request": "launch",
             "mainClass": "HW5.Prerequisites",
