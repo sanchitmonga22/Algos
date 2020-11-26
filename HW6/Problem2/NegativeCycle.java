@@ -1,6 +1,4 @@
 package HW6.Problem2;
-
-import java.io.*;
 import java.util.Scanner;
 
 // @sanchitmonga22
@@ -54,13 +52,8 @@ public class NegativeCycle {
     }
 
     public static void main(String[] args) {
-        File file = new File("D:\\Fall 2020\\CSCI 261\\HW6\\Problem2\\input-2.7");
         Scanner scan=null;
-        try {
-            scan = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        scan = new Scanner(System.in);
         String[] firstLine= scan.nextLine().strip().split(" ");
         int V = Integer.parseInt(firstLine[0])+1;
         int E = Integer.parseInt(firstLine[1]);
@@ -74,8 +67,9 @@ public class NegativeCycle {
         }
 
         if (isNegCycleBellmanFord(graph, 1))
-            System.out.println("Yes");
+            System.out.println("YES");
         else
-            System.out.println("No");
+            System.out.println("NO");
+        scan.close();
     }
 }

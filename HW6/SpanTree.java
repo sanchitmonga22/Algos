@@ -1,6 +1,4 @@
 package HW6;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 // @sanchitmonga22
@@ -145,8 +143,9 @@ public class SpanTree {
 		System.out.println(unionFind.sum);
 	}
 
-	static public void main(String[] args) throws FileNotFoundException {
-		Scanner input =  new Scanner(new File("D:\\Fall 2020\\CSCI 261\\HW6\\Problem1\\input-1.4"));
+	// The main method to run the algorithm
+	static public void main(String[] args){
+		Scanner input =  new Scanner(System.in);
 		int n = input.nextInt();
 		int m = input.nextInt();
 		Graph graph = new Graph(n,m);
@@ -158,5 +157,6 @@ public class SpanTree {
 		}else{
 			runKrusKal(graph);
 		}
+		input.close();
 	}
 }
