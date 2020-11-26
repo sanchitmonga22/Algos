@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - SpanTree",
+            "request": "launch",
+            "mainClass": "HW6.SpanTree",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SpanTree",
+            "request": "launch",
+            "mainClass": "HW6.Problem1.SpanTree",
+            "projectName": "CSCI 261_228bbe4a"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - NegativeCycle",
             "request": "launch",
             "mainClass": "HW6.Problem2.NegativeCycle",
