@@ -51,7 +51,6 @@ public class SpanTree {
                 int val2=key[v];
                 if (val != 0 && mstSet[v] == false && val < val2
                 && !(graph[parent[v]][v].inF==1 && graph[parent[v]][v].updated)){
-                    Edge a=graph[parent[v]][v];
                     graph[u][v].updated=true;
                     parent[v] = u;
                     key[v] = graph[u][v].weight;
